@@ -17,6 +17,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Component\Finder\Administrator\Helper\LanguageHelper;
+use Joomla\Database\ParameterType;
 use Joomla\Registry\Registry;
 use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
@@ -175,6 +176,14 @@ class Query
 	public $when2;
 
 	/**
+	 * Match search terms exactly or with a LIKE scheme
+	 *
+	 * @var    string
+	 * @since  __DEPLOY_VERSION__
+	 */
+	public $wordmode;
+
+	/**
 	 * Method to instantiate the query object.
 	 *
 	 * @param   array  $options  An array of query options.
@@ -185,7 +194,7 @@ class Query
 	public function __construct($options)
 	{
 		// Get the input string.
-		$this->input = $options['input'] ?? null;
+		$this->input = $options['input'] ?? '';
 
 		// Get the empty query setting.
 		$this->empty = isset($options['empty']) ? (bool) $options['empty'] : false;
@@ -195,6 +204,9 @@ class Query
 
 		// Get the matching mode.
 		$this->mode = 'AND';
+
+		// Set the word matching mode
+		$this->wordmode = !empty($options['word_match']) ? $options['word_match'] : 'exact';
 
 		// Initialize the temporary date storage.
 		$this->dates = new Registry;
@@ -1004,7 +1016,7 @@ class Query
 					// Tokenize the current term.
 					$token = Helper::tokenize($terms[$i], $lang, true);
 
-					// Todo: The previous function call may return an array, which seems not to be handled by the next one, which expects an object
+					// @todo: The previous function call may return an array, which seems not to be handled by the next one, which expects an object
 					$token = $this->getTokenData(array_shift($token));
 
 					if ($params->get('filter_commonwords', 0) && $token->common)
@@ -1343,8 +1355,33 @@ class Query
 		else
 		{
 			// Add the term to the query.
-			$query->where('(t.term = ' . $db->quote($token->term) . ' OR t.stem = ' . $db->quote($token->stem) . ')')
-				->where('t.phrase = 0')
+
+			$searchTerm = $token->term;
+			$searchStem = $token->stem;
+			$term = $query->quoteName('t.term');
+			$stem = $query->quoteName('t.stem');
+
+			if ($this->wordmode === 'begin')
+			{
+				$searchTerm .= '%';
+				$searchStem .= '%';
+				$query->where('(' . $term . ' LIKE :searchTerm OR ' . $stem . ' LIKE :searchStem)');
+			}
+			elseif ($this->wordmode === 'fuzzy')
+			{
+				$searchTerm = '%' . $searchTerm . '%';
+				$searchStem = '%' . $searchStem . '%';
+				$query->where('(' . $term . ' LIKE :searchTerm OR ' . $stem . ' LIKE :searchStem)');
+			}
+			else
+			{
+				$query->where('(' . $term . ' = :searchTerm OR ' . $stem . ' = :searchStem)');
+			}
+
+			$query->bind(':searchTerm', $searchTerm, ParameterType::STRING)
+				->bind(':searchStem', $searchStem, ParameterType::STRING);
+
+			$query->where('t.phrase = 0')
 				->where('t.language IN (\'*\',' . $db->quote($token->language) . ')');
 		}
 

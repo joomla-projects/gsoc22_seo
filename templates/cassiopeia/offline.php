@@ -18,7 +18,6 @@ use Joomla\CMS\Uri\Uri;
 
 /** @var Joomla\CMS\Document\HtmlDocument $this */
 
-$twofactormethods = AuthenticationHelper::getTwoFactorMethods();
 $extraButtons     = AuthenticationHelper::getLoginButtons('form-login');
 $app              = Factory::getApplication();
 $wa               = $this->getWebAssetManager();
@@ -26,7 +25,7 @@ $wa               = $this->getWebAssetManager();
 $fullWidth = 1;
 
 // Template path
-$templatePath = 'templates/' . $this->template;
+$templatePath = 'media/templates/site/cassiopeia';
 
 // Color Theme
 $paramsColorName = $this->params->get('colorName', 'colors_standard');
@@ -150,11 +149,6 @@ $wa->getAsset('style', 'fontawesome')->setAttribute('rel', 'lazy-stylesheet');
 
 						<label for="password"><?php echo Text::_('JGLOBAL_PASSWORD'); ?></label>
 						<input name="password" class="form-control" id="password" type="password">
-
-						<?php if (count($twofactormethods) > 1) : ?>
-						<label for="secretkey"><?php echo Text::_('JGLOBAL_SECRETKEY'); ?></label>
-						<input name="secretkey" autocomplete="one-time-code" class="form-control" id="secretkey" type="text">
-						<?php endif; ?>
 
 						<?php foreach($extraButtons as $button):
 							$dataAttributeKeys = array_filter(array_keys($button), function ($key) {

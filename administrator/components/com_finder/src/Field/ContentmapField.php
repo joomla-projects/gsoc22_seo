@@ -44,7 +44,7 @@ class ContentmapField extends GroupedlistField
 		$groups = array();
 
 		// Get the database object and a new query object.
-		$db = Factory::getDbo();
+		$db = $this->getDatabase();
 
 		// Levels subquery.
 		$levelQuery = $db->getQuery(true);
@@ -98,7 +98,7 @@ class ContentmapField extends GroupedlistField
 				{
 					$levelPrefix = str_repeat('- ', max(0, $branch->level - 1));
 
-					if (trim($name, '**') === 'Language')
+					if (trim($name, '*') === 'Language')
 					{
 						$text = LanguageHelper::branchLanguageTitle($branch->text);
 					}
