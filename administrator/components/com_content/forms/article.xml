@@ -257,6 +257,27 @@
 			validate="rules"
 		/>
 
+		<field
+			name="dofollow_count"
+			type="text"
+			label="COM_CONTENT_FIELD_ARTICLE_DOFOLLOW_COUNT"
+			readonly="true"
+		/>
+
+		<field
+			name="dofollow_links"
+			type="textarea"
+			label="COM_CONTENT_FIELD_ARTICLE_DOFOLLOW_LINKS"
+			readonly="true"
+		/>
+
+		<field
+			name="nofollow_links"
+			type="textarea"
+			label="COM_CONTENT_FIELD_ARTICLE_NOFOLLOW_LINKS"
+			readonly="true"
+		/>
+
 	</fieldset>
 
 	<fields name="attribs" label="COM_CONTENT_ATTRIBS_FIELDSET_LABEL">
