@@ -48,7 +48,7 @@ foreach($anchorTags as $anchorTag)
     //Exclude internal links 
     $url = substr(Uri::root(), strpos(Uri::root(), "://")+3);
     $url = substr($url, 0, strpos($url, "/"));
-    if (preg_match("/" . $url . "/i", $href))
+    if (preg_match("/" . $url . "/i", $href) || !preg_match("/\./i", $href))
     {
       continue;
     }
