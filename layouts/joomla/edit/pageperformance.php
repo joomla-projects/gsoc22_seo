@@ -9,9 +9,11 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Date\Date;
+use Joomla\CMS\Factory;
+use Joomla\Component\Content\Site\Helper\RouteHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
-use Joomla\Component\Content\Site\Helper\RouteHelper;
 
 $form  = $displayData->getForm();
 
@@ -21,7 +23,37 @@ $site = "https://pagespeed.web.dev/report?url=";
 echo Text::_('COM_CONTENT_FIELD_PAGE_PERFORMANCE_LABEL_1');
 $url = Uri::root() . (RouteHelper::getArticleRoute($form->getValue('id') . ':' .  $form->getValue('alias'),  $form->getValue('catid'),  $form->getValue('language')));
 
-//Encode the URL before passing it to the reports page
-echo "<center><a href='" . $site . urlencode($url) . "' target='_blank'><button type='button' class='btn btn-success button-select'>Start</button></a></center>";
+$nullDate = Factory::getDbo()->getNullDate();
+$nowDate = Factory::getDate()->toUnix();
+
+$tz = Factory::getUser()->getTimezone();
+
+$publishDown = $form->getValue('publish_down');
+$publishDown = ($publishDown !== null && $publishDown !== $nullDate) ? Factory::getDate($publishDown, 'UTC')->setTimezone($tz) : false;
+
+$button = "<button type='button' class='btn btn-success button-select'>Start</button>";
+
+//Disable for locally hosted sites
+$localhost = preg_match("/localhost/i", $url) || preg_match("/127.0.0.1/i", $url);
+
+//Button enabled only for pubished articles which have not expired
+if($form->getValue('state') == 1  && !($publishDown && $nowDate > $publishDown->toUnix()) && !$localhost)
+{
+    //Encode the URL before passing it to the reports page
+    $button = "<a href='" . $site . urlencode($url) . "' target='_blank'>" . $button . "</a>";
+}
+
+echo "<center>" . $button . "</center>";
+
+//Display message if article not in published state
+if($form->getValue('state') != 1 || ($publishDown && $nowDate > $publishDown->toUnix()))
+{
+    echo "<span style='color:red'>" . Text::_('COM_CONTENT_FIELD_PAGE_PERFORMANCE_LABEL_2') . "</span>";
+}
+
+if($localhost)
+{
+    echo "<span style='color:red'>" . Text::_('COM_CONTENT_FIELD_PAGE_PERFORMANCE_LABEL_LOCAL') . "</span>";
+}
 
 ?>
