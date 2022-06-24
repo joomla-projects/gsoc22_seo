@@ -200,6 +200,12 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 						<?php echo LayoutHelper::render('joomla.edit.linkchecker', $this); ?>
 						</div>
 					</fieldset>
+					<fieldset id="fieldset-sentencestructure" class="options-form">
+						<legend><?php echo Text::_('JGLOBAL_FIELDSET_SENTENCE_STRUCTURE'); ?></legend>
+						<div>
+						<?php echo LayoutHelper::render('joomla.edit.sentencestructure', $this); ?>
+						</div>
+					</fieldset>					
 				</div>
 			</div>
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
