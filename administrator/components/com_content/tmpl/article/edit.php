@@ -171,6 +171,45 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 		<?php endif; ?>
 
+			<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'seo', Text::_('COM_CONTENT_FIELDSET_SEO')); ?>
+			<div class="row">
+				<div class="col-12 col-lg-6">
+					<fieldset id="fieldset-articlepreview" class="options-form">
+						<legend><?php echo Text::_('JGLOBAL_FIELDSET_ARTICLE_PREVIEW'); ?></legend>
+						<div>
+						<?php echo LayoutHelper::render('joomla.edit.articlepreview', $this); ?>
+						</div>
+					</fieldset>
+					<fieldset id="fieldset-paragraphstructure" class="options-form">
+						<legend><?php echo Text::_('JGLOBAL_FIELDSET_PARAGRAPH_STRUCTURE'); ?></legend>
+						<div>
+						<?php echo LayoutHelper::render('joomla.edit.paragraphstructure', $this); ?>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col-12 col-lg-6">
+					<fieldset id="fieldset-pageperformance" class="options-form">
+						<legend><?php echo Text::_('JGLOBAL_FIELDSET_PAGE_PERFORMANCE'); ?></legend>
+						<div>
+						<?php echo LayoutHelper::render('joomla.edit.pageperformance', $this); ?>
+						</div>
+					</fieldset>
+					<fieldset id="fieldset-linkchecker" class="options-form">
+						<legend><?php echo Text::_('JGLOBAL_FIELDSET_LINK_CHECKER'); ?></legend>
+						<div>
+						<?php echo LayoutHelper::render('joomla.edit.linkchecker', $this); ?>
+						</div>
+					</fieldset>
+					<fieldset id="fieldset-sentencestructure" class="options-form">
+						<legend><?php echo Text::_('JGLOBAL_FIELDSET_SENTENCE_STRUCTURE'); ?></legend>
+						<div>
+						<?php echo LayoutHelper::render('joomla.edit.sentencestructure', $this); ?>
+						</div>
+					</fieldset>					
+				</div>
+			</div>
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
+
 		<?php echo HTMLHelper::_('uitab.endTabSet'); ?>
 
 		<?php // Creating 'id' hiddenField to cope with com_associations sidebyside loop ?>
