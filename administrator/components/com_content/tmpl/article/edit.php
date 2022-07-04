@@ -175,9 +175,9 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 			<div class="row">
 				<div class="col-12 col-lg-6">
 					<fieldset id="fieldset-articlepreview" class="options-form">
-						<legend><?php echo Text::_('JGLOBAL_FIELDSET_ARTICLE_PREVIEW'); ?></legend>
+						<legend><?php echo Text::_('JGLOBAL_FIELDSET_CONTENT_ANALYSIS'); ?></legend>
 						<div>
-						<?php echo LayoutHelper::render('joomla.edit.articlepreview', $this); ?>
+						<?php echo LayoutHelper::render('joomla.edit.contentanalysis', $this); ?>
 						</div>
 					</fieldset>
 					<fieldset id="fieldset-paragraphstructure" class="options-form">
