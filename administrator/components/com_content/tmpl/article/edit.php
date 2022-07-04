@@ -174,7 +174,13 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 			<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'seo', Text::_('COM_CONTENT_FIELDSET_SEO')); ?>
 			<div class="row">
 				<div class="col-12 col-lg-6">
-					<fieldset id="fieldset-articlepreview" class="options-form">
+				<fieldset id="fieldset-articlepreview" class="options-form">
+						<legend><?php echo Text::_('JGLOBAL_FIELDSET_ARTICLE_PREVIEW'); ?></legend>
+						<div>
+						<?php echo LayoutHelper::render('joomla.edit.articlepreview', $this); ?>
+						</div>
+					</fieldset>
+					<fieldset id="fieldset-contentanalysis" class="options-form">
 						<legend><?php echo Text::_('JGLOBAL_FIELDSET_CONTENT_ANALYSIS'); ?></legend>
 						<div>
 						<?php echo LayoutHelper::render('joomla.edit.contentanalysis', $this); ?>

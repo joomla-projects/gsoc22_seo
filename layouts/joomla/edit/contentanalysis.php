@@ -19,38 +19,11 @@ use Joomla\Component\Content\Site\Helper\RouteHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
-echo Text::_('COM_CONTENT_FIELD_ARTICLE_PREVIEW_TITLE');
 
 $data = $displayData;
 $form  = $displayData->getForm();
 
 $title = $form->getField('title') ? 'title' : ($form->getField('name') ? 'name' : '');
-
-$max_title_length = 70;
-$max_url_length_displayed = 70;
-
-//Display article title
-echo "<b><span style='color:blue'>" . substr($form->getValue($title), 0, $max_title_length);
-if(strlen($form->getValue($title)) > $max_title_length)
-{
-	echo " ...";
-} 
-echo "</span></b><br>";
-
-//Display article URL
-$url = Uri::root() . (RouteHelper::getArticleRoute( $form->getValue('id') . ':' .  $form->getValue('alias'),  $form->getValue('catid'),  $form->getValue('language')));
-echo "<span style='color:green'><i>" . substr($url, 0, $max_url_length_displayed);
-if(strlen($url) > $max_url_length_displayed)
-{
-	echo "...";
-} 
-echo "</i></span>";
-
-echo "<br>";
-echo $form->getValue('metadesc') . "<br><br>";
-echo "<hr>";
-
-echo Text::_('COM_CONTENT_FIELD_SEO_ANALYSIS_TITLE');
 
 $fields = $displayData->get('fields') ?: array(
 	'article_title_length',
@@ -64,6 +37,7 @@ $word = 0;
 
 //Recommended range for article title: 50 - 70
 $min_title_length = 50;
+$max_title_length = 70;
 $field = new \SimpleXMLElement('<field></field>');
 $field->addAttribute('name', 'article_title_length');
 $field->addAttribute('type', 'text');
@@ -94,7 +68,11 @@ $field->addAttribute('name', 'metadesc_length');
 $field->addAttribute('type', 'text');
 $field->addAttribute('label', 'COM_CONTENT_FIELD_ARTICLE_METADESC_LENGTH_LABEL');
 $field->addAttribute('readonly', 'true');
-if(strlen($form->getValue('metadesc')) >= $min_metadesc_length && strlen($form->getValue('metadesc')) <= $max_metadesc_length)
+if(strlen($form->getValue('metadesc')) == 0)
+{
+	$field->addAttribute('default', Text::_('COM_CONTENT_FIELD_MISSING_TEXT'));
+}
+else if(strlen($form->getValue('metadesc')) >= $min_metadesc_length && strlen($form->getValue('metadesc')) <= $max_metadesc_length)
 {
     $field->addAttribute('default', Text::_('COM_CONTENT_FIELD_GOOD_TEXT'));
 }
