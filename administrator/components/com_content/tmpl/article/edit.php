@@ -180,6 +180,12 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 						<?php echo LayoutHelper::render('joomla.edit.articlepreview', $this); ?>
 						</div>
 					</fieldset>
+					<fieldset id="fieldset-readability" class="options-form">
+						<legend><?php echo Text::_('JGLOBAL_FIELDSET_READABILITY'); ?></legend>
+						<div>
+						<?php echo LayoutHelper::render('joomla.edit.readability', $this); ?>
+						</div>
+					</fieldset>
 					<fieldset id="fieldset-paragraphstructure" class="options-form">
 						<legend><?php echo Text::_('JGLOBAL_FIELDSET_PARAGRAPH_STRUCTURE'); ?></legend>
 						<div>
