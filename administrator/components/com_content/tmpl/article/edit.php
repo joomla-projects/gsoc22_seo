@@ -171,6 +171,16 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 		<?php endif; ?>
 
+		<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'opengraph', Text::_('COM_CONTENT_FIELDSET_OPENGRAPH')); ?>
+			<fieldset id="fieldset-opengraph" class="options-form">
+				<legend><?php echo Text::_('COM_CONTENT_FIELDSET_OPENGRAPH'); ?></legend>
+				<div>
+				<?php echo LayoutHelper::render('joomla.edit.opengraph', $this); ?>
+				</div>
+			</fieldset>
+			
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
+
 		<?php echo HTMLHelper::_('uitab.endTabSet'); ?>
 
 		<?php // Creating 'id' hiddenField to cope with com_associations sidebyside loop ?>

@@ -546,6 +546,87 @@
 				/>
 			</fieldset>
 
+			<fieldset name="opengraph" label="JGLOBAL_FIELDSET_OPENGRAPH_OPTIONS">
+				<field name="hide_messages" 
+					type="radio" 
+					default="0"
+					label="COM_CONTENT_FIELD_ARTICLE_OG_HIDE_MESSAGES"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field 
+					name="og" 
+					type="spacer" 
+					default=""
+					label="COM_CONTENT_FIELD_ARTICLE_OG"
+				/>
+
+				<field 
+					name="og_type" 
+					type="list" 
+					default="article"
+					label="COM_CONTENT_FIELD_ARTICLE_OG_TYPE"
+				>
+					<option value="article">COM_CONTENT_OPENGRAPH_ARTICLE</option>
+					<option value="product">COM_CONTENT_OPENGRAPH_PRODUCT</option>
+					<option value="book">COM_CONTENT_OPENGRAPH_BOOK</option>
+					<option value="profile">COM_CONTENT_OPENGRAPH_PROFILE</option>
+					<option value="website">COM_CONTENT_OPENGRAPH_WEBSITE</option>
+					<option value="video.movie">COM_CONTENT_OPENGRAPH_VIDEO_MOVIE</option>
+					<option value="video.episode">COM_CONTENT_OPENGRAPH_VIDEO_EPISODE</option>
+					<option value="video.tvshow">COM_CONTENT_OPENGRAPH_VIDEO_TVSHOW</option>
+					<option value="video.other">COM_CONTENT_OPENGRAPH_VIDEO_OTHER</option>
+					<option value="music.song">COM_CONTENT_OPENGRAPH_MUSIC_SONG</option>
+					<option value="music.album">COM_CONTENT_OPENGRAPH_MUSIC_ALBUM</option>
+					<option value="music.playlist">COM_CONTENT_OPENGRAPH_MUSIC_PLAYLIST</option>
+					<option value="music.radio_station">COM_CONTENT_OPENGRAPH_MUSIC_RADIOSTATION</option>				
+				</field>
+
+				<field 
+					name="og_article_published_time" 
+					type="calendar" 
+					default=""
+					label="COM_CONTENT_FIELD_ARTICLE_OG_PUBLISHED_TIME"
+					showon="og_type:article"
+				/>
+
+				<field 
+					name="og_article_author" 
+					type="text"
+					label="COM_CONTENT_FIELD_ARTICLE_OG_AUTHOR"
+					showon="og_type:article"
+				/>
+
+				<field 
+					name="og_title" 
+					type="text" 
+					label="COM_CONTENT_FIELD_ARTICLE_OG_TITLE"
+				/>
+
+				<field 
+					name="og_description" 
+					type="textarea" 
+					default=""
+					label="COM_CONTENT_FIELD_ARTICLE_OG_DESC"
+				/>
+
+				<field 
+					name="g_help" 
+					type="spacer" 
+					label="COM_CONTENT_FIELD_ARTICLE_OG_G_HELP"
+					class="text"
+					showon="hide_messages:0"
+				/>
+
+				<field 
+					name="og_img" 
+					type="media" 
+					label="COM_CONTENT_FIELD_ARTICLE_OG_IMG"
+				/>
+			</fieldset>
+
 		</fieldset>
 
 		<fieldset name="editorConfig" label="COM_CONTENT_EDITORCONFIG_FIELDSET_LABEL">
