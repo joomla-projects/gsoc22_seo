@@ -568,6 +568,7 @@
 					type="list" 
 					default="article"
 					label="COM_CONTENT_FIELD_ARTICLE_OG_TYPE"
+					description="COM_CONTENT_FIELD_ARTICLE_OG_TYPE_DESC"
 				>
 					<option value="article">COM_CONTENT_OPENGRAPH_ARTICLE</option>
 					<option value="product">COM_CONTENT_OPENGRAPH_PRODUCT</option>
@@ -589,6 +590,7 @@
 					type="calendar" 
 					default=""
 					label="COM_CONTENT_FIELD_ARTICLE_OG_PUBLISHED_TIME"
+					description="COM_CONTENT_FIELD_ARTICLE_OG_PUBLISHED_TIME_DESC"
 					showon="og_type:article"
 				/>
 
@@ -596,6 +598,7 @@
 					name="og_article_author" 
 					type="text"
 					label="COM_CONTENT_FIELD_ARTICLE_OG_AUTHOR"
+					description="COM_CONTENT_FIELD_ARTICLE_OG_AUTHOR_DESC"
 					showon="og_type:article"
 				/>
 
@@ -603,6 +606,7 @@
 					name="og_title" 
 					type="text" 
 					label="COM_CONTENT_FIELD_ARTICLE_OG_TITLE"
+					description="COM_CONTENT_FIELD_ARTICLE_OG_TITLE_DESC"
 				/>
 
 				<field 
@@ -610,6 +614,7 @@
 					type="textarea" 
 					default=""
 					label="COM_CONTENT_FIELD_ARTICLE_OG_DESC"
+					description="COM_CONTENT_FIELD_ARTICLE_OG_DESC_DESC"
 				/>
 
 				<field 
@@ -624,6 +629,7 @@
 					name="og_img" 
 					type="media" 
 					label="COM_CONTENT_FIELD_ARTICLE_OG_IMG"
+					description="COM_CONTENT_FIELD_ARTICLE_OG_IMG_DESC"
 				/>
 			</fieldset>
 

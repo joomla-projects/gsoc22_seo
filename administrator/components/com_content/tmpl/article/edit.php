@@ -27,7 +27,7 @@ $wa->useScript('keepalive')
 	->useScript('com_contenthistory.admin-history-versions');
 
 $this->configFieldsets  = array('editorConfig');
-$this->hiddenFieldsets  = array('basic-limited');
+$this->hiddenFieldsets  = array('basic-limited', 'opengraph');
 $fieldsetsInImages = ['image-intro', 'image-full'];
 $fieldsetsInLinks = ['linka', 'linkb', 'linkc'];
 $this->ignore_fieldsets = array_merge(array('jmetadata', 'item_associations'), $fieldsetsInImages, $fieldsetsInLinks);
@@ -175,7 +175,7 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 			<fieldset id="fieldset-opengraph" class="options-form">
 				<legend><?php echo Text::_('COM_CONTENT_FIELDSET_OPENGRAPH'); ?></legend>
 				<div>
-				<?php echo LayoutHelper::render('joomla.edit.opengraph', $this); ?>
+				<?php echo $this->form->renderFieldset('opengraph'); ?>
 				</div>
 			</fieldset>
 			

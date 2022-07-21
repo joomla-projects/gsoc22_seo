@@ -337,6 +337,93 @@ class HtmlView extends BaseHtmlView
 			$this->document->setDescription($this->params->get('menu-meta_description'));
 		}
 
+		$url = Uri::root() . RouteHelper::getArticleRoute($this->item->id . ':' . $this->item->alias, $this->item->catid, $this->item->language);
+		if ($url)
+		{
+			$this->document->setMetaData('og:url', $url, 'property');
+		}
+
+		$config = Factory::getConfig();
+		if ($config->get('sitename'))
+		{
+			$this->document->setMetaData('og:site_name', $config->get('sitename'), 'property');
+		}	
+
+		if ($this->item->params->get('og_type'))
+		{
+			$this->document->setMetaData('og:type', $this->item->params->get('og_type'), 'property');
+		}
+
+		if ($this->item->title)
+		{
+			//if (og:title not set)
+			$this->document->setMetaData('og:title', $this->item->title, 'property');
+			if ($this->item->params->get('og_title'))
+			{
+				$this->document->setMetaData('og:title', $this->item->params->get('og_title'), 'property');
+			}
+			
+		}
+
+		if ($this->item->metadesc)
+		{
+			$this->document->setMetaData('og:description', $this->item->metadesc, 'property');
+			if ($this->item->params->get('og_description'))
+			{
+				$this->document->setMetaData('og:description', $this->item->params->get('og_description'), 'property');
+			}
+			
+		}
+
+		if ($this->item->publish_up)
+		{
+			$this->document->setMetaData('article:published_time', $this->item->publish_up, 'property');
+			if ($this->item->params->get('og_article_published_time'))
+			{
+				$this->document->setMetaData('article:published_time', $this->item->params->get('og_article_published_time'), 'property');
+			}
+			
+		}
+		
+		if ($this->item->author)
+		{
+			$this->document->setMetaData('article:author', $this->item->author, 'property');
+			if ($this->item->params->get('og_article_author'))
+			{
+				$this->document->setMetaData('article:author', $this->item->params->get('og_article_author'), 'property');
+			}
+			
+		}
+		
+		$images = json_decode($this->item->images);
+		$img_url = "";
+		if ($images->image_intro)
+		{
+			$img_url = $images->image_intro;
+		}
+		if ($images->image_fulltext)
+		{
+			$img_url = $images->image_fulltext;
+		}
+		if ($this->item->params->get('og_img'))
+		{
+			$img_url = $this->item->params->get('og_img');
+		}
+		if ($img_url)
+		{
+			$img = substr($img_url, 0, strpos($img_url, '#'));
+			$img_url = Uri::base() . substr($img_url, 0, strpos($img_url, '#'));
+			$img_info = getimagesize($img);
+			$this->document->setMetaData('og:image', $img_url, 'property');
+			$this->document->setMetaData('og:image:secure_url', $img_url, 'property');
+			if (\is_array($img_info))
+			{
+				$this->document->setMetaData('og:image:type', $img_info['mime'], 'property');
+				$this->document->setMetaData('og:image:height', $img_info[1]);
+				$this->document->setMetaData('og:image:width', $img_info[0]);		
+			}
+		}
+
 		if ($this->params->get('robots'))
 		{
 			$this->document->setMetaData('robots', $this->params->get('robots'));
