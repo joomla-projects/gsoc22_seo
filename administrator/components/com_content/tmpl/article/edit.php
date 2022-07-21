@@ -27,7 +27,7 @@ $wa->useScript('keepalive')
 	->useScript('com_contenthistory.admin-history-versions');
 
 $this->configFieldsets  = array('editorConfig');
-$this->hiddenFieldsets  = array('basic-limited');
+$this->hiddenFieldsets  = array('basic-limited', 'opengraph');
 $fieldsetsInImages = ['image-intro', 'image-full'];
 $fieldsetsInLinks = ['linka', 'linkb', 'linkc'];
 $this->ignore_fieldsets = array_merge(array('jmetadata', 'item_associations'), $fieldsetsInImages, $fieldsetsInLinks);
@@ -170,6 +170,16 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 			</fieldset>
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 		<?php endif; ?>
+
+		<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'opengraph', Text::_('COM_CONTENT_FIELDSET_OPENGRAPH')); ?>
+			<fieldset id="fieldset-opengraph" class="options-form">
+				<legend><?php echo Text::_('COM_CONTENT_FIELDSET_OPENGRAPH'); ?></legend>
+				<div>
+				<?php echo $this->form->renderFieldset('opengraph'); ?>
+				</div>
+			</fieldset>
+			
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 
 		<?php echo HTMLHelper::_('uitab.endTabSet'); ?>
 
