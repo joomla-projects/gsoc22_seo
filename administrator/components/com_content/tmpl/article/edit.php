@@ -18,6 +18,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\Registry\Registry;
+use Joomla\CMS\Uri\Uri;
 
 /** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
 $wa = $this->document->getWebAssetManager();
@@ -38,6 +39,7 @@ $params = clone $this->state->get('params');
 $params->merge(new Registry($this->item->attribs));
 
 $input = Factory::getApplication()->input;
+$app = Factory::getApplication();
 
 $assoc              = Associations::isEnabled();
 $showArticleOptions = $params->get('show_article_options', 1);
@@ -94,6 +96,78 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 						</div>
 					</fieldset>
 				<?php endforeach; ?>
+				<?php 
+				$images = array("intro", "fulltext");
+				foreach ($images as $single_img) : 
+					$img_url = $this->item->images['image_' . $single_img];
+					if($this->item->images['image_' . $single_img . '_compress'] == 1 && $img_url)
+					{
+						if($this->item->images['image_' . $single_img . '_options'] == 0)
+						{
+							$compression_factor = 90;
+						}
+						else if($this->item->images['image_' . $single_img . '_options'] == 1)
+						{
+							$compression_factor = 75;
+						}
+						else
+						{
+							$compression_factor = 50;
+						}
+						$img = substr($img_url, 0, strpos($img_url, '#'));
+						$img_url = Uri::root() . $img;
+						$img_info = getimagesize("../" . $img);
+						$orig_size = round(filesize("../" . $img)/1024, 1);
+						if (\is_array($img_info))
+						{
+							$source = "../" . $img;
+							if($img_info['mime'] == "image/png")
+							{
+								$image = imagecreatefrompng($source);
+								$ext = ".png";
+								$compression_factor = 9 - ($compression_factor/100) * 9;
+							}
+							else if($img_info['mime'] == "image/jpeg")
+							{
+								$image = imagecreatefromjpeg($source);
+								$ext = substr($img_url, -5);
+								$ext = substr($ext, strpos($ext, '.'));
+								//$ext = ".jpeg";
+							}
+							else
+							{
+								break;
+							}
+						}
+						$orig_url = substr($img, 0, strpos($img, '.'));
+						copy("../" . $orig_url . $ext, "../" . $orig_url . "_temp" . $ext);
+						$orig_size = round(filesize("../" . $orig_url . "_temp" . $ext)/1024, 1);
+
+						// Save compressed image 
+						if($ext == ".jpeg" || $ext == ".jpg")
+						{
+							imagejpeg($image, "../" . $img, $compression_factor);
+						}
+						else if($ext == ".png")
+						{
+							imagepng($image, "../" . $img, $compression_factor);
+						}
+						$new_size = round(filesize("../" . $img)/1024, 1);
+						
+						if($new_size < $orig_size)
+						{
+							copy("../" . $orig_url . "_temp" . $ext, "../" . $orig_url . "_orig" . $ext);
+							$percent_compress = round((($orig_size - $new_size)/$orig_size)*100);
+							$app->enqueueMessage("Image " . $single_img . ": " . $percent_compress . "% compressed");
+						}
+						else
+						{
+							$app->enqueueMessage("Image " . $single_img . ": " . Text::_('COM_CONTENT_COMPRESS_WARNING'), 'warning');
+						}
+						unlink("../" . $orig_url . "_temp" . $ext);
+					}
+				endforeach;
+				?>
 				</div>
 				<div class="col-12 col-lg-6">
 				<?php foreach ($fieldsetsInLinks as $fieldset) : ?>

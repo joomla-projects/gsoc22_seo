@@ -723,6 +723,31 @@
 			/>
 
 			<field
+				name="image_intro_compress"
+				type="radio"
+				label="JCOMPRESSED"
+				default="0"
+				layout="joomla.form.field.radio.switcher"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="image_intro_options"
+				type="list"
+				label="COM_CONTENT_FIELD_IMAGE_COMPRESS_OPTIONS"
+				default=""
+				filter="options"
+				validate="options"
+				showon="image_intro_compress:1"
+			>
+				<option value="0">JCOMPRESS_LOW</option>
+				<option value="1">JCOMPRESS_MEDIUM</option>
+				<option value="2">JCOMPRESS_HIGH</option>
+			</field>
+
+			<field
 				name="image_intro_alt"
 				type="text"
 				label="COM_CONTENT_FIELD_IMAGE_ALT_LABEL"
@@ -757,6 +782,31 @@
 				type="media"
 				label="COM_CONTENT_FIELD_FULL_LABEL"
 			/>
+
+			<field
+				name="image_fulltext_compress"
+				type="radio"
+				label="JCOMPRESSED"
+				default="0"
+				layout="joomla.form.field.radio.switcher"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="image_fulltext_options"
+				type="list"
+				label="COM_CONTENT_FIELD_IMAGE_COMPRESS_OPTIONS"
+				default=""
+				filter="options"
+				validate="options"
+				showon="image_fulltext_compress:1"
+			>
+				<option value="0">JCOMPRESS_LOW</option>
+				<option value="1">JCOMPRESS_MEDIUM</option>
+				<option value="2">JCOMPRESS_HIGH</option>
+			</field>
 
 			<field
 				name="image_fulltext_alt"
