@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_content
@@ -23,8 +24,8 @@ use Joomla\Registry\Registry;
 $wa = $this->document->getWebAssetManager();
 $wa->getRegistry()->addExtensionRegistryFile('com_contenthistory');
 $wa->useScript('keepalive')
-	->useScript('form.validate')
-	->useScript('com_contenthistory.admin-history-versions');
+    ->useScript('form.validate')
+    ->useScript('com_contenthistory.admin-history-versions');
 
 $this->configFieldsets  = array('editorConfig');
 $this->hiddenFieldsets  = array('basic-limited');
@@ -42,15 +43,13 @@ $input = Factory::getApplication()->input;
 $assoc              = Associations::isEnabled();
 $showArticleOptions = $params->get('show_article_options', 1);
 
-if (!$assoc || !$showArticleOptions)
-{
-	$this->ignore_fieldsets[] = 'frontendassociations';
+if (!$assoc || !$showArticleOptions) {
+    $this->ignore_fieldsets[] = 'frontendassociations';
 }
 
-if (!$showArticleOptions)
-{
-	// Ignore fieldsets inside Options tab
-	$this->ignore_fieldsets = array_merge($this->ignore_fieldsets, ['attribs', 'basic', 'category', 'author', 'date', 'other']);
+if (!$showArticleOptions) {
+    // Ignore fieldsets inside Options tab
+    $this->ignore_fieldsets = array_merge($this->ignore_fieldsets, ['attribs', 'basic', 'category', 'author', 'date', 'other']);
 }
 
 // In case of modal
