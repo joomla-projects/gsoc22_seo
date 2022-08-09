@@ -19,15 +19,48 @@ $title_text = str_replace('{max_length}', $max_length, Text::_('COM_CONTENT_FIEL
 echo $title_text;
 
 $form = $displayData->getForm();
-$total_sentences = preg_match_all('/[^\s]{1,2}(.*?)(\.|\!|\?){1,3}(?!\w)/', strip_tags($form->getValue('articletext')), $matches);
+$total_sentences = preg_match_all(Text::_('COM_CONTENT_FIELD_SENTENCE_TERMINATOR'), strip_tags($form->getValue('articletext')), $matches);
 
 $sentence = 0;
 $sentence_displayed = 0;
+$long_sentences = 0;
+$sentence_list = array();
 
-//Displays the first 5 ill-formed sentences
-while($sentence < $total_sentences && $sentence_displayed < 5)
+while($sentence < $total_sentences)
 {
 	if(str_word_count(strip_tags($matches[0][$sentence])) > $max_length)
+    {
+        $sentence_list[$long_sentences] = strip_tags($matches[0][$sentence]);
+        $long_sentences++;
+    }
+    $sentence++;
+}
+
+for($i=0;$i<$long_sentences-1;$i++)
+{
+    for($j=0;$j<$long_sentences-$i-1;$j++)
+    {
+        if(str_word_count($sentence_list[$j]) < str_word_count($sentence_list[$j+1]))
+        {
+            $temp = $sentence_list[$j];
+            $sentence_list[$j] = $sentence_list[$j+1];
+            $sentence_list[$j+1] = $temp;
+        }
+    }
+}
+
+$sentence = 0;
+
+if($long_sentences == 0)
+{
+    $none_text = str_replace('{max_length}', $max_length, Text::_('COM_CONTENT_FIELD_SENTENCE_STRUCTURE_NONE'));
+    echo "<i>" . $none_text . "</i>";
+}
+else
+{
+    echo $long_sentences . " discovered out of total " . $total_sentences . "<br>";
+
+    while($sentence < $long_sentences && $sentence_displayed < 5)
     {
         if($sentence_displayed == 0)
         {
@@ -35,22 +68,14 @@ while($sentence < $total_sentences && $sentence_displayed < 5)
             echo "<ul>";
         }
         echo "<li>";
-        echo "<i>" . substr(strip_tags($matches[0][$sentence]), 0, 30) . "...</i>\n";
-        echo "[" . str_word_count(strip_tags($matches[0][$sentence])) . " " . Text::_('COM_CONTENT_FIELD_WORDS_DESC') . "]";// . ($matches[0][$i]);
+        echo "<i>" . substr($sentence_list[$sentence_displayed], 0, 30) . "...</i>\n";
+        echo "[" . str_word_count($sentence_list[$sentence_displayed]) . " " . Text::_('COM_CONTENT_FIELD_WORDS_DESC') . "]";// . ($matches[0][$i]);
         echo "</li>";
         $sentence_displayed++;
+        $sentence++;
     }
-    $sentence++;
+    echo "</ul>";
 }
-echo "</ul>";
-
-
-if($sentence_displayed == 0)
-{
-    $none_text = str_replace('{max_length}', $max_length, Text::_('COM_CONTENT_FIELD_SENTENCE_STRUCTURE_NONE'));
-    echo "<i>" . $none_text . "</i>";
-}
-
 
 
 ?>
