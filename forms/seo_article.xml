@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="seo" label="PLG_SYSTEM_SEO">
+		<field 
+			name="article_preview_desktop" 
+			type="spacer" 
+			default=""
+			label="PLG_SEO_ARTICLE_PREVIEW_DESKTOP"
+		/>
+		<field 
+			name="article_desktop" 
+			type="spacer" 
+			default=""
+		/>
+		<field
+			name="spacer1"
+			type="spacer"
+			hr="true"
+		/>
+		<field 
+			name="article_preview_mobile" 
+			type="spacer" 
+			default=""
+			label="PLG_SEO_ARTICLE_PREVIEW_MOBILE"
+		/>
+		<field 
+			name="article_mobile" 
+			type="spacer" 
+			default=""
+			label="PLG_SEO_ARTICLE_MOBILE"
+		/>
+		<field
+			name="spacer2"
+			type="spacer"
+			hr="true"
+		/>
+		<field 
+			name="og_preview_desktop" 
+			type="spacer" 
+			default=""
+			label="PLG_SEO_OG_PREVIEW_DESKTOP"
+		/>
+		<field
+			name="spacer3"
+			type="spacer"
+			hr="true"
+		/>
+		<field 
+			name="og_preview_mobile" 
+			type="spacer" 
+			default=""
+			label="PLG_SEO_OG_PREVIEW_MOBILE"
+		/>
+		</fieldset>
+	</fields>
+</form>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="4" group="system" client="administrator" method="upgrade">
+	<name>PLG_SEO</name>
+	<creationDate>22.08.2022</creationDate>
+	<author>Alisha Kamat</author>
+	<authorEmail>alishakamat8@gmail.com</authorEmail>
+	<authorUrl>https://www.linkedin.com/in/alishakamat/</authorUrl>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>0.1.1</version>
+	<description>PLG_SEO_XML_DESCRIPTION</description>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_seo.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_seo.sys.ini</language>
+	</languages>
+
+	<files>
+		<filename plugin="seo">seo.php</filename>
+		<folder>language</folder>
+		<folder>forms</folder>
+	</files>
+
+	<config>
+
+		<fields name="options">
+		</fields>
+
+		<fields name="params">
+			<fieldset name="seo" label="PLG_SYSTEM_SEO">
+			</fieldset>
+		</fields>
+	</config>
+</extension>
