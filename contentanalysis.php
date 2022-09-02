@@ -220,14 +220,14 @@ class plgSystemContentAnalysis extends CMSPlugin /* implements SubscriberInterfa
 				$info .= $title_desc;
 				$info .= "</td>
 					      <td>";
-				for($i=0;$i<3;$i++)
+				for($i=0;$i<5;$i++)
 				{
 					$info .= "<i class='fas fa-circle' style='color:blue'></i>";
 				}
-				for($i=0;$i<=1;$i++)
+				/*for($i=0;$i<=1;$i++)
 				{
 					$info .= "<i class='far fa-circle' style='color:blue'></i>";
-				}
+				}*/
 				/*$info .= "</td>
 						  <td>
 							<button type='button' class='btn btn-secondary' data-bs-toggle='modal'>" . Text::_('PLG_CONTENT_ANALYSIS_IGNORE') . "</button>
@@ -265,11 +265,11 @@ class plgSystemContentAnalysis extends CMSPlugin /* implements SubscriberInterfa
 				$info .= $metadesc_desc;
 				$info .= "</td>
 			              <td>";
-			    for($i=0;$i<3;$i++)
+			    for($i=0;$i<=3;$i++)
 				{
 					$info .= "<i class='fas fa-circle' style='color:blue'></i>";
 				}
-				for($i=0;$i<=1;$i++)
+				for($i=0;$i<1;$i++)
 				{
 					$info .= "<i class='far fa-circle' style='color:blue'></i>";
 				}
