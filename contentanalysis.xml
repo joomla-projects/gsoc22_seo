@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="4" group="system" client="administrator" method="upgrade">
+	<name>PLG_CONTENT_ANALYSIS</name>
+	<creationDate>22-08-2022</creationDate>
+	<author>Alisha Kamat</author>
+	<authorUrl>https://www.linkedin.com/in/alishakamat/</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_CONTENT_ANALYSIS_XML_DESCRIPTION</description>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_contentanalysis.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_contentanalysis.sys.ini</language>
+	</languages>
+
+	<files>
+		<filename plugin="contentanalysis">contentanalysis.php</filename>
+		<folder>language</folder>
+		<folder>forms</folder>
+	</files>
+
+</extension>

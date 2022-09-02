@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="seo_content-analysis" label="Content Analysis Hints">
+				<field
+					name="content_hints"
+					type="note"
+				/>
+		</fieldset>
+	</fields>
+</form>
