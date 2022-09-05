@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="seo-opengraph" label="PLG_SYSTEM_OPENGRAPH">
+				<fieldgroup
+				>
+				<field 
+					name="og_type" 
+					type="list" 
+					default="article"
+					label="PLG_SYSTEM_OPENGRAPH_TYPE"
+					description="PLG_SYSTEM_OPENGRAPH_TYPE_DESC"
+				>
+					<option value="article">PLG_SYSTEM_OPENGRAPH_ARTICLE</option>
+					<option value="product">PLG_SYSTEM_OPENGRAPH_PRODUCT</option>
+					<option value="book">PLG_SYSTEM_OPENGRAPH_BOOK</option>
+					<option value="profile">PLG_SYSTEM_OPENGRAPH_PROFILE</option>
+					<option value="website">PLG_SYSTEM_OPENGRAPH_WEBSITE</option>
+					<option value="video.movie">PLG_SYSTEM_OPENGRAPH_VIDEO_MOVIE</option>
+					<option value="video.episode">PLG_SYSTEM_OPENGRAPH_VIDEO_EPISODE</option>
+					<option value="video.tvshow">PLG_SYSTEM_OPENGRAPH_VIDEO_TVSHOW</option>
+					<option value="video.other">PLG_SYSTEM_OPENGRAPH_VIDEO_OTHER</option>
+					<option value="music.song">PLG_SYSTEM_OPENGRAPH_MUSIC_SONG</option>
+					<option value="music.album">PLG_SYSTEM_OPENGRAPH_MUSIC_ALBUM</option>
+					<option value="music.playlist">PLG_SYSTEM_OPENGRAPH_MUSIC_PLAYLIST</option>
+					<option value="music.radio_station">PLG_SYSTEM_OPENGRAPH_MUSIC_RADIOSTATION</option>				
+				</field>
+
+				<field 
+					name="og_article_published_time" 
+					type="calendar" 
+					default=""
+					label="PLG_SYSTEM_OPENGRAPH_PUBLISHED_TIME"
+					description="PLG_SYSTEM_OPENGRAPH_PUBLISHED_TIME_DESC"
+					showon="og_type:article"
+				/>
+
+				<field 
+					name="og_article_author" 
+					type="text"
+					label="PLG_SYSTEM_OPENGRAPH_AUTHOR"
+					description="PLG_SYSTEM_OPENGRAPH_AUTHOR_DESC"
+					showon="og_type:article"
+				/>
+
+				<field 
+					name="og_title" 
+					type="text" 
+					label="PLG_SYSTEM_OPENGRAPH_TITLE"
+					description="PLG_SYSTEM_OPENGRAPH_TITLE_DESC"
+				/>
+
+				<field 
+					name="og_description" 
+					type="textarea" 
+					default=""
+					label="PLG_SYSTEM_OPENGRAPH_DESC"
+					description="PLG_SYSTEM_OPENGRAPH_DESC_DESC"
+				/>
+
+				<field 
+					name="og_img" 
+					type="media" 
+					label="PLG_SYSTEM_OPENGRAPH_IMG"
+					description="PLG_SYSTEM_OPENGRAPH_IMG_DESC"
+				/>
+
+			</fieldgroup>
+		</fieldset>
+	</fields>
+</form>
