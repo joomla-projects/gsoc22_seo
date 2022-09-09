@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="plg-seo" label="SEO">
+			<fieldset name="seo-previews" label="PLG_SYSTEM_PREVIEW" class="w-50">
+				<field
+					name="preview" 
+					type="note"
+				/>
+			</fieldset>
+		</fieldset>
+	</fields>
+</form>

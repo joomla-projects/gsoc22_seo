@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="4" group="system" client="administrator" method="upgrade">
+	<name>PLG_PREVIEWS</name>
+	<creationDate>05-09-2022</creationDate>
+	<author>Alisha Kamat</author>
+	<authorUrl>https://www.linkedin.com/in/alishakamat/</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_PREVIEWS_XML_DESCRIPTION</description>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_preview.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_preview.sys.ini</language>
+	</languages>
+
+	<files>
+		<filename plugin="preview">preview.php</filename>
+		<folder>language</folder>
+		<folder>forms</folder>
+	</files>
+
+	<config>
+
+		<fields name="options">
+		</fields>
+
+		<fields name="params">
+			<fieldset name="seo-previews" label="PLG_SYSTEM_PREVIEW">
+			</fieldset>
+		</fields>
+	</config>
+</extension>
