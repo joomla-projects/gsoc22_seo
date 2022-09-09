@@ -13,7 +13,7 @@ Customising each of these parameters can boost the article’s click rate signif
 
 Here’s what that looks like
 
-![image](https://user-images.githubusercontent.com/84401192/189322451-60b938da-5c0c-44d9-91ac-01f417970681.png)
+![image](https://user-images.githubusercontent.com/84401192/189323838-a5896c9e-310b-4c41-8752-880c5439f773.png)
 
 
 ## Installation and Testing
