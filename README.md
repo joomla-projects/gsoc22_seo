@@ -1,7 +1,7 @@
 # Meta Data Plugin
-This plugin gives Joomla content creators the ability to customize their article’s meta data. Meta data helps search engines determine the relevance of articles before displaying them in search results.
+Meta data helps search engines determine the relevance of articles before displaying them in search results. This plugin gives Joomla content creators the ability to customize their article’s meta data. 
 
-Though the page's content plays a major role in its ranking on search engines, customising its metadata is equally important. This makes it easier for search engines to accurately determine the page's purpose, skipping all the guesswork.
+Though the page's content plays a major role in its ranking on search engines, customising its metadata is equally important. This makes it easier for search engines to determine the page's purpose before it has reader's statistics to understand the content better and finetune its categorisation.
 
 Some of the important meta data parameters include the following.
 - Article Browser Title
@@ -23,5 +23,5 @@ These parameters can be updated by going to the article's backend.
   <li> Upload the downloaded zip file </li>
   <li> Click on manage extensions and enable the plugin</li>
   <li> Now move to the <i>Article Edit View</i> for any article</li>
-  <li> You will notice a new <i>SEO</i> tab</li>
+  <li> You will notice a new <i>SEO</i> tab (if it doesn't already exist)</li>
 </ol>
