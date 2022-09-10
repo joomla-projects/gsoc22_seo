@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="plg-seo" label="SEO">
+			<fieldset name="plg_metadata"
+				label="PLG_SYSTEM_METADATA" class="w-50 float-start">
+
+			<field
+				name="browser_title"
+				type="text"
+				label="PLG_SYSTEM_METADATA_TITLE"
+			/>
+
+			<field
+				name="metadesc"
+				type="textarea"
+				label="PLG_SYSTEM_METADATA_METADESC"
+				rows="3"
+				cols="30"
+				maxlength="160"
+				charcounter="true"
+			/>
+
+			<field
+				name="robots"
+				type="list"
+				label="PLG_SYSTEM_METADATA_ROBOTS"
+				validate="options"
+				>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
+				<option value="index, follow" />
+				<option value="noindex, follow" />
+				<option value="index, nofollow" />
+				<option value="noindex, nofollow" />
+			</field>
+			
+			<field
+				name="rights"
+				type="textarea"
+				label="PLG_SYSTEM_METADATA_RIGHTS"
+				filter="string"
+				cols="30"
+				rows="2"
+			/>
+
+			<field
+				name="author"
+				type="text"
+				label="PLG_SYSTEM_METADATA_AUTHOR"
+			/>
+
+			</fieldset>
+		</fieldset>
+	</fields>
+</form>

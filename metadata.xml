@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="4" group="system" client="administrator" method="upgrade">
+	<name>PLG_METADATA</name>
+	<creationDate>05-09-2022</creationDate>
+	<author>Alisha Kamat</author>
+	<authorUrl>https://www.linkedin.com/in/alishakamat/</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_METADATA_XML_DESCRIPTION</description>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_metadata.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_metadata.sys.ini</language>
+	</languages>
+
+	<files>
+		<filename plugin="metadata">metadata.php</filename>
+		<folder>language</folder>
+		<folder>forms</folder>
+	</files>
+
+	<config>
+
+		<fields name="options">
+		</fields>
+
+		<fields name="params">
+			<fieldset name="plg_seo" label="SEO">
+			</fieldset>
+		</fields>
+	</config>
+</extension>
