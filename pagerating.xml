@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="4" group="system" client="administrator" method="upgrade">
+	<name>PLG_SYSTEM_PAGERATING</name>
+	<creationDate>12-09-2022</creationDate>
+	<author>Alisha Kamat</author>
+	<authorUrl>https://www.linkedin.com/in/alishakamat/</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_SYSTEM_PAGERATING_XML_DESCRIPTION</description>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_pagerating.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_pagerating.sys.ini</language>
+	</languages>
+
+	<files>
+		<filename plugin="pagerating">pagerating.php</filename>
+		<folder>language</folder>
+		<folder>forms</folder>
+	</files>
+	<media folder="media" destination="plg_system_pagerating">
+		<folder>css</folder>
+	</media>
+
+</extension>

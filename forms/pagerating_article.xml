@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="seo_content-analysis" label="PLG_SYSTEM_CONTENT_TAB">
+				<field
+					name="rating"
+					type="note"
+				/>
+		</fieldset>
+	</fields>
+</form>
