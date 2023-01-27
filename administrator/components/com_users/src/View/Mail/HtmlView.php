@@ -14,7 +14,12 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+
+// phpcs:disable PSR1.Files.SideEffects
+\defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
 
 /**
  * Users mail view.
@@ -63,10 +68,14 @@ class HtmlView extends BaseHtmlView
      */
     protected function addToolbar()
     {
-        Factory::getApplication()->input->set('hidemainmenu', true);
+        Factory::getApplication()->getInput()->set('hidemainmenu', true);
 
         ToolbarHelper::title(Text::_('COM_USERS_MASS_MAIL'), 'users massmail');
-        ToolbarHelper::custom('mail.send', 'envelope', '', 'COM_USERS_TOOLBAR_MAIL_SEND_MAIL', false);
+        $toolbar = Toolbar::getInstance();
+        $toolbar->standardButton('COM_USERS_TOOLBAR_MAIL_SEND_MAIL', 'COM_USERS_TOOLBAR_MAIL_SEND_MAIL', 'mail.send')
+            ->icon('icon-envelope')
+            ->formValidation(true);
+
         ToolbarHelper::cancel('mail.cancel');
         ToolbarHelper::divider();
         ToolbarHelper::preferences('com_users');

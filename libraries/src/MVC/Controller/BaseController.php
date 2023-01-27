@@ -28,6 +28,10 @@ use Joomla\Event\DispatcherAwareInterface;
 use Joomla\Event\DispatcherAwareTrait;
 use Joomla\Input\Input;
 
+// phpcs:disable PSR1.Files.SideEffects
+\defined('JPATH_PLATFORM') or die;
+// phpcs:enable PSR1.Files.SideEffects
+
 /**
  * Base class for a Joomla Controller
  *
@@ -262,7 +266,7 @@ class BaseController implements ControllerInterface, DispatcherAwareInterface
         );
 
         $app   = Factory::getApplication();
-        $input = $app->input;
+        $input = $app->getInput();
 
         // Get the environment configuration.
         $basePath = \array_key_exists('base_path', $config) ? $config['base_path'] : JPATH_COMPONENT;
@@ -354,7 +358,7 @@ class BaseController implements ControllerInterface, DispatcherAwareInterface
         $this->taskMap = array();
 
         $this->app   = $app ?: Factory::getApplication();
-        $this->input = $input ?: $this->app->input;
+        $this->input = $input ?: $this->app->getInput();
 
         if (\defined('JDEBUG') && JDEBUG) {
             Log::addLogger(array('text_file' => 'jcontroller.log.php'), Log::ALL, array('controller'));
@@ -597,11 +601,8 @@ class BaseController implements ControllerInterface, DispatcherAwareInterface
 
         $view = $this->getView($viewName, $viewType, '', array('base_path' => $this->basePath, 'layout' => $viewLayout));
 
-        // Get/Create the model
-        if ($model = $this->getModel($viewName, '', array('base_path' => $this->basePath))) {
-            // Push the model into the view (as default)
-            $view->setModel($model, true);
-        }
+        // Set models for the View
+        $this->prepareViewModel($view);
 
         $view->document = $document;
 
@@ -1056,5 +1057,34 @@ class BaseController implements ControllerInterface, DispatcherAwareInterface
         }
 
         return $this;
+    }
+
+    /**
+     * Method to set the View Models
+     *
+     * This function is provided as a default implementation,
+     * and only set one Model in the view (that with the same prefix/sufix than the view).
+     * In case you want to set several Models for your view,
+     * you will need to override it in your DisplayController controller.
+     *
+     * @param   ViewInterface  $view  The view Object
+     *
+     * @return  void
+     *
+     * @since   __DEPLOY_VERSION__
+     */
+    protected function prepareViewModel(ViewInterface $view)
+    {
+        if (!method_exists($view, 'setModel')) {
+            return;
+        }
+
+        $viewName = $view->getName();
+
+        // Get/Create the model
+        if ($model = $this->getModel($viewName, '', array('base_path' => $this->basePath))) {
+            // Push the model into the view (as default)
+            $view->setModel($model, true);
+        }
     }
 }

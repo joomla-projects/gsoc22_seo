@@ -13,6 +13,10 @@ use Joomla\CMS\Factory;
 use Joomla\Database\DatabaseDriver;
 use Joomla\Database\Exception\ExecutionFailureException;
 
+// phpcs:disable PSR1.Files.SideEffects
+\defined('JPATH_PLATFORM') or die;
+// phpcs:enable PSR1.Files.SideEffects
+
 /**
  * Each object represents one query, which is one line from a DDL SQL query.
  * This class is used to check the site's database to see if the DDL query has been run.
@@ -144,11 +148,6 @@ abstract class ChangeItem
     {
         // Get the class name
         $serverType = $db->getServerType();
-
-        // For `mssql` server types, convert the type to `sqlsrv`
-        if ($serverType === 'mssql') {
-            $serverType = 'sqlsrv';
-        }
 
         $class = '\\Joomla\\CMS\\Schema\\ChangeItem\\' . ucfirst($serverType) . 'ChangeItem';
 
