@@ -211,6 +211,38 @@
 			validate="captcha"
 			namespace="article"
 		/>
+
+		<field 
+			name="show_sharebox_options" 
+			type="radio" 
+			default="1"
+			label="COM_CONTENT_FIELD_ARTICLE_DISPLAY_SHAREBOX"
+		>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+		<field
+			name="show_twitter"
+			type="checkbox"
+			label="COM_CONTENT_FIELD_ARTICLE_DISPLAY_TWITTER_SHARE"
+			showon="show_sharebox_options:1"
+		/>
+
+		<field
+			name="show_facebook"
+			type="checkbox"
+			label="COM_CONTENT_FIELD_ARTICLE_DISPLAY_FACEBOOK_SHARE"
+			showon="show_sharebox_options:1"
+		/>
+
+		<field
+			name="show_whatsapp"
+			type="checkbox"
+			label="COM_CONTENT_FIELD_ARTICLE_DISPLAY_WHATSAPP_SHARE"
+			showon="show_sharebox_options:1"
+		/>
+
 	</fieldset>
 		<fields name="images">
 		<fieldset name="image-intro">
