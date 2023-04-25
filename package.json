@@ -80,7 +80,7 @@
     "chokidar": "^3.5.2",
     "commander": "^8.3.0",
     "core-js": "^3.19.3",
-    "cssnano": "^5.0.12",
+    "cssnano": "^6.0.0",
     "cypress": "^10.3.1",
     "eslint": "^8.4.1",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -99,10 +99,10 @@
     "rtlcss": "^3.5.0",
     "sass-embedded": "^1.54.4",
     "selenium-standalone": "^8.0.8",
-    "stylelint": "^14.1.0",
-    "stylelint-config-standard": "^24.0.0",
-    "stylelint-order": "^5.0.0",
-    "stylelint-scss": "^4.0.1",
+    "stylelint": "^15.6.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-order": "^6.0.3",
+    "stylelint-scss": "^4.6.0",
     "terser": "^5.7.0"
   }
 }
